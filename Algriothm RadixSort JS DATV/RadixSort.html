@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Radix Animation by Y. Daniel Liang</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="boxes.css" />
+
+    <script> //
+      var ARRAY_SIZE = 20; //Độ dài mảng
+      var position = 0;
+      var i = 0;
+      var key;
+      var sorted = false;
+      var list = new Array();
+      var bucket = new Array();
+
+      initializeList();
+      initializeBuckets();
+
+      function reset() {
+        sorted = false;
+        initializeList();
+        clearBuckets();
+        i = 0;
+        position = 0;
+        initializeList();
+        draw();
+      }
+
+      function initializeList() {
+        for (var i = 0; i < ARRAY_SIZE; i++) {
+          list[i] = Math.floor(Math.random() * 10000); 
+        }
+      }
+
+      /** Create array list for each bucket */
+      function initializeBuckets() {
+        for (var i = 0; i < 10; i++) { 
+          bucket[i] = new Array();
+        }
+      }
+
+      /** Clear the buckets */
+      function clearBuckets() {
+        for (var i = 0; i < 10; i++) {
+          bucket[i].splice(0, bucket[i].length);
+        }
+      }
+
+      function draw() {
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext("2d");
+        // Reset size will clear the canvas, but not for IE9
+        canvas.width = window.innerWidth - 20; 
+        canvas.height = window.innerHeight - 180;        
+        context.clearRect(0, 0, canvas.width, canvas.height); // For IE 9
+
+        context.font = "14px sans-serif";
+        context.strokeStyle = "#100"; // Set a pen color
+
+        drawList(context, list, 474, 0, ""); // X và Y cột random
+        drawBuckets(context, 500, 50, bucket); // x và y cột dưới từ 0 đến 9
+
+        if (sorted) {
+          context.fillText("Đã sắp xếp xong, bấm random để random", 820, 20);
+        }
+        context.stroke();
+      }
+
+      function drawList(context, list, startX, startY, title) { // Ve list sau khi an nut random
+        context.fillText(title, 40 * (0 + 1) + startX - 5, 60 + startY);
+        for (var k = 0; k < list.length; k++) {
+          if (i - 1 == k) {
+            context.fillStyle = '#EB0D1B';
+            context.fillText(list[k] + "", 40 * (k + 2) + 5 + startX, 60 + startY);
+            context.fillStyle = 'black';
+          }
+          context.fillText(list[k] + "", 40 * (k + 2) + 5 + startX, 60 + startY);
+          context.rect(40 * (k + 2) + startX, 40 + startY, 40, 30);
+        }
+      }
+
+      function drawBuckets(context, startX, startY, bucket) { // Ve ra list sap xep
+        for (var i = 0; i < 10; i++) {
+          context.rect(65 * (i + 2) + startX, 40 + startY, 50, 150);
+          context.fillText("bucket[" + i + "]", 65 * (i + 2) + startX - 5, 210 + startY);
+
+          for (var j = 0; j < bucket[i].length; j++) {
+            context.fillText(bucket[i][j], 65 * (i + 2) + startX + 15, j * 20 + 60 + startY);
+          }
+
+          if (i == key && bucket[i].length > 0) {
+            context.fillStyle = '#EB0D1B';
+            context.fillText(bucket[i][bucket[i].length - 1],
+                    65 * (i + 2) + startX + 15, (bucket[i].length - 1) * 20 + 60 + startY);
+            context.fillStyle = 'black';
+          }
+        }
+      }
+
+      function step() {
+        if (takeAStep()) {
+          sorted = true;
+        }
+        draw();
+      }
+
+      function takeAStep() {
+        // Distribute the elements from list to buckets thuật toán ở đây ô hiểu nó chạy như nào ko , thuật toán ấy tôi chịu :()
+        if (i < list.length) {
+          key = getKey(list[i], position); //Lấy vị trí thứ tự chữ số
+          bucket[key][bucket[key].length] = list[i];  
+          i++;
+          return false;
+        }
+        else if (position < 2) {
+          bucketsToList();
+          clearBuckets();
+          i = 0;
+          position++;
+          return false;
+        }
+        else {
+          bucketsToList();
+          clearBuckets();
+          return true;
+        }
+      }
+
+      /** move the elements from the buckets back to list */ // Di chuyen tu list da sap xep ve list goc 
+      function bucketsToList() {
+        var k = 0; // k is an index for list
+        for (var i = 0; i < bucket.length; i++) {
+          for (var j = 0; j < bucket[i].length; j++)
+            list[k++] = bucket[i][j];
+        }
+      }
+
+      /** Return the digit at the specified position. 
+       * The last digit's position is 0. */
+      function getKey(number, position) { // Lay gia tri cua hang chu so nhat dinh (don vi, chuc, tram, nghin)
+        var result = 1;
+        for (var i = 0; i < position; i++)
+          result *= 10;
+
+        return Math.floor(number / result) % 10;
+      }
+
+    </script>
+  
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="#"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+  gtag('config', 'UA-89940905-27');
+</script>
+
+<script type="text/javascript" src="../logging.js"></script>
+</head>
+
+
+
+  <body onload="reset()" onresize="draw()">   
+    <h3 style="text-align:center; font: bold">Radix Sort <a href="https://github.com/vudast412/DATV-Algroithm/tree/master/Algriothm%20RadixSort%20DATV" >Animation</a> by 
+      <a href="https://www.facebook.com/BoxDATV/" >DATV</a></h3>
+    <p> 
+        Cách sử dụng: Thực hiện sắp xếp cơ số cho danh sách 15 số nguyên ngẫu nhiên từ 0 đến 9999. Nhấp vào nút Bước để di chuyển một số sang nhóm. Nhấp vào nút Đặt lại để bắt đầu lại với một danh sách ngẫu nhiên mới 
+    </p>
+
+    <div style="margin: 0px auto; border: 1px solid #EB0D1B; text-align: right">
+      <canvas id="canvas" width="400" height="280"></canvas>
+    </div>
+    <div style="text-align: center; margin-top: 1em">
+      <button type="button" class = "button" onclick="step()">Bước</button>
+      <button type="button" class = "button" onclick="reset()">Random</button>
+    </div>
+  </body>
+</html>
