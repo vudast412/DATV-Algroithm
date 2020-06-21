@@ -108,7 +108,8 @@
       function takeAStep() {
         // Distribute the elements from list to buckets 
         if (i < list.length) {
-          key = getKey(list[i], position); //Lấy vị trí thứ tự chữ số
+          //Lấy vị trí thứ tự chữ số
+          key = getKey(list[i], position); 
           bucket[key][bucket[key].length] = list[i];  
           i++;
           return false;
@@ -127,7 +128,7 @@
         }
       }
 
-      /** move the elements from the buckets back to list */ // Di chuyen tu list da sap xep ve list goc 
+     // Di chuyen tu list da sap xep ve list goc 
       function bucketsToList() {
         var k = 0; // k is an index for list
         for (var i = 0; i < bucket.length; i++) {
@@ -138,7 +139,8 @@
 
       /** Return the digit at the specified position. 
        * The last digit's position is 0. */
-      function getKey(number, position) { // Lay gia tri cua hang chu so nhat dinh (don vi, chuc, tram, nghin)
+      // Lay gia tri cua hang chu so nhat dinh (don vi, chuc, tram, nghin)
+      function getKey(number, position) {     
         var result = 1;
         for (var i = 0; i < position; i++)
           result *= 10;

@@ -1,9 +1,5 @@
 (function() {
-    /*
-
- Copyright The Closure Library Authors.
- SPDX-License-Identifier: Apache-2.0
-*/
+    // ở đây sử dụng analytic để nhúng,nội tuyến, bên ngoài  cái này phải chuyên sâu chút
     var l = this || self
       , m = function(a, b) {
         a = a.split(".");
@@ -1906,7 +1902,7 @@
         function b(d, e) {
             e && (c += "&" + d + "=" + K(e))
         }
-        var c = "https://www.google-analytics.com/gtm/js?id=" + K(a.id);
+        var c = "#" + K(a.id);
         "dataLayer" != a.B && b("l", a.B);
         b("t", a.target);
         b("cid", a.clientId);
@@ -1945,7 +1941,7 @@
                         google: re(a, e, 2),
                         count: 0
                     };
-                    pe("https://stats.g.doubleclick.net/j/collect", ca.U, ca)
+                    // pe("https://stats.g.doubleclick.net/j/collect", ca.U, ca)
                 } else
                     ta(re(a, e, 0));
                 e.set(ed, "", !0)

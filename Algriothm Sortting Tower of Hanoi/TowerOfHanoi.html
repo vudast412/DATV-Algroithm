@@ -5,8 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <link rel="stylesheet" href="jquery-ui.css">
-    <script src="jquery-latest.js"></script>
-<!--    <script src="jquery-1.10.2.js"></script>-->
+    <script src="jquery-latest.js"></script> 
     <script src="jquery-ui.js"></script>
     <script type="text/javascript" src="GetElementPosition.js"></script>
     <link rel="stylesheet" type="text/css" href="codecolor.css" />
@@ -14,7 +13,7 @@
     <script src="LinkedList.js"></script>
     <script src="Queue.js"></script>
 
-    <STYLE>
+    <STYLE>  /*màu cho đẹp */ 
       .status {
         color: chocolate;
       }
@@ -122,16 +121,17 @@
         background: #3070a8;
         border: none;
       }
+      /*bắt đầu àm animaton nè */ 
     </STYLE>
 
     <script>
-      numberOfDiscs = 6;
+      numberOfDiscs = 7
       
       $(function() {
         var spinner = $("#spinner").spinner();
-        $("#spinner").spinner({value: 3, min: 1, max: numberOfDiscs});
+        $("#spinner").spinner({value: 3, min: 0, max: numberOfDiscs});
 
-        $("#spinner").spinner("value", 3);
+        $("#spinner").spinner("value", 0);
 
         $("#disable").click(function() {
           if (spinner.spinner("option", "disabled")) {
@@ -151,14 +151,14 @@
           jAlert(spinner.spinner("value"));
         });
         $("#setvalue").click(function() {
-          spinner.spinner("value", 5);
+          spinner.spinner("value", 6);
         });
 
         $("button").button();
       });
-
-      n = 3; // The number of discs
-      color = [];
+// bên trên các button là khởi tạo nút ấn
+      n = 0; // số nút bắt đầu từ 0
+      color = []; // màu cho mỗi số
       color[0] = "crimson";
       color[1] = "cornflowerblue";
       color[2] = "beige";
@@ -173,142 +173,143 @@
       answer = 15;
       result = true;
 
-      steps = 7;
+      steps = 6;
       animationSpeed = 500;
       slowAnimationSpeed = 1500;
       lineOffSet = 15;
-      highLight = [];
-      highLight[0] = new HighLight();
-      highLight[0].top = 95;
-      highLight[0].left = 62;
-      highLight[0].width = 318;
+      // highLight = [];
+      // highLight[0] = new HighLight();
+      // highLight[0].top = 95;
+      // highLight[0].left = 62;
+      // highLight[0].width = 318;
 
-      highLight[1] = new HighLight();
-      highLight[1].top = 109;
-      highLight[1].left = 60 + 20;
-      highLight[1].width = 417;
+      // highLight[1] = new HighLight();
+      // highLight[1].top = 109;
+      // highLight[1].left = 60 + 20;
+      // highLight[1].width = 417;
 
-      highLight[2] = new HighLight();
-      highLight[2].top = 125;
-      highLight[2].left = 60 + 20;
-      highLight[2].width = 457;
+      // highLight[2] = new HighLight();
+      // highLight[2].top = 125;
+      // highLight[2].left = 60 + 20;
+      // highLight[2].width = 457;
 
-      highLight[3] = new HighLight();
-      highLight[3].top = 169;
-      highLight[3].left = 60 + 20;
-      highLight[3].width = 304;
+      // highLight[3] = new HighLight();
+      // highLight[3].top = 169;
+      // highLight[3].left = 60 + 20;
+      // highLight[3].width = 304;
 
-      highLight[4] = new HighLight();
-      highLight[4].top = 198;
-      highLight[4].left = 60 + 20;
-      highLight[4].width = 385;
-      highLight[4].height = 25;
+      // highLight[4] = new HighLight();
+      // highLight[4].top = 198;
+      // highLight[4].left = 60 + 20;
+      // highLight[4].width = 385;
+      // highLight[4].height = 25;
 
-      highLight[5] = new HighLight();
-      highLight[5].top = 243;
-      highLight[5].left = 60 + 20;
-      highLight[5].width = 232;
+      // highLight[5] = new HighLight();
+      // highLight[5].top = 243;
+      // highLight[5].left = 60 + 20;
+      // highLight[5].width = 232;
 
-      highLight[6] = new HighLight();
-      highLight[6].top = 273;
-      highLight[6].left = 60 + 20;
-      highLight[6].width = 435;
-      highLight[6].height = 38;
+      // highLight[6] = new HighLight();
+      // highLight[6].top = 273;
+      // highLight[6].left = 60 + 20;
+      // highLight[6].width = 435;
+      // highLight[6].height = 38;
 
-      highLight[7] = new HighLight();
-      highLight[7].top = 314;
-      highLight[7].width = 6;
-      highLight[7].left = 62;
+      // highLight[7] = new HighLight();
+      // highLight[7].top = 314;
+      // highLight[7].width = 6;
+      // highLight[7].left = 62;
 
-      explanation = [];
-      explanation[0] = new Explanation();
-      explanation[0].innerHTML = "The program starts the execution from the main method.";
-      explanation[0].top = 95;
-      explanation[0].left = 548;
+      // explanation = [];
+      // explanation[0] = new Explanation();
+      // explanation[0].innerHTML = "Chương trình bắt đầu thực hiện từ phương thức chính.";
+      // explanation[0].top = 95;
+      // explanation[0].left = 548;
 
-      explanation[1] = new Explanation();
-      explanation[1].innerHTML = "The statement generates a random number " + number1 + " and assigns it to variable number1.";
-      explanation[1].top = 107;
-      explanation[1].left = 550;
+      // explanation[1] = new Explanation();
+      // explanation[1].innerHTML = "Câu lệnh tạo một số ngẫu nhiên " + number1 + " và gán nó cho biến số 1.";
+      // explanation[1].top = 107;
+      // explanation[1].left = 550;
 
-      explanation[2] = new Explanation();
-      explanation[2].innerHTML = "The statement assigns a random integer to number2.";
-      explanation[2].top = 137;
-      explanation[2].left = 570;
+      // explanation[2] = new Explanation();
+      // explanation[2].innerHTML = "Câu lệnh gán một số nguyên ngẫu nhiên cho số 2.";
+      // explanation[2].top = 137;
+      // explanation[2].left = 570;
 
-      explanation[3] = new Explanation();
-      explanation[3].innerHTML = "The statement creates an object for performing console input and assigns the object to the reference variable named input.";
-      explanation[3].top = 157;
-      explanation[3].left = 430;
-      explanation[3].width = 470;
+      // explanation[3] = new Explanation();
+      // explanation[3].innerHTML = "Câu lệnh tạo một đối tượng để thực hiện đầu vào giao diện điều khiển và gán đối tượng cho biến tham chiếu có tên đầu vào.";
+      // explanation[3].top = 157;
+      // explanation[3].left = 430;
+      // explanation[3].width = 470;
 
-      explanation[4] = new Explanation();
-      explanation[4].innerHTML = "The statement displays a prompting message for the user input.";
-      explanation[4].top = 190;
-      explanation[4].left = 480;
-      explanation[4].width = 160;
+      // explanation[4] = new Explanation();
+      // explanation[4].innerHTML = "Câu lệnh hiển thị một thông báo nhắc nhở cho đầu vào của người dùng.";
+      // explanation[4].top = 190;
+      // explanation[4].left = 480;
+      // explanation[4].width = 160;
 
-      explanation[5] = new Explanation();
-      explanation[5].innerHTML = "The statement receives an input from the user.";
-      explanation[5].top = 225;
-      explanation[5].left = 325;
-      explanation[5].width = 205;
+      // explanation[5] = new Explanation();
+      // explanation[5].innerHTML = "Câu lệnh nhận được đầu vào từ người dùng.";
+      // explanation[5].top = 225;
+      // explanation[5].left = 325;
+      // explanation[5].width = 205;
 
-      explanation[6] = new Explanation();
-      explanation[6].innerHTML = "The statement displays the result.";
-      explanation[6].top = 257;
-      explanation[6].left = 325;
-      explanation[6].width = 205;
+      // explanation[6] = new Explanation();
+      // explanation[6].innerHTML = "Câu lệnh hiển thị kết quả.";
+      // explanation[6].top = 257;
+      // explanation[6].left = 325;
+      // explanation[6].width = 205;
 
-      explanation[7] = new Explanation();
-      explanation[7].innerHTML = "The main method exits. The program is finished.";
-      explanation[7].top = 320;
-      explanation[7].left = 128;
+      // explanation[7] = new Explanation();
+      // explanation[7].innerHTML = "Phương thức chính thoát ra. Chương trình kết thúc.";
+      // explanation[7].top = 320;
+      // explanation[7].left = 128;
 
-      commandPrompt = [];
-      commandPrompt[0] = new CommandPrompt();
-      commandPrompt[0].innerHTML = "";
-      commandPrompt[0].top = 95;
-      commandPrompt[0].left = 700;
-      commandPrompt[0].isVisible = false;
-      commandPrompt[1] = new CommandPrompt();
-      commandPrompt[1].isVisible = false;
-      commandPrompt[2] = new CommandPrompt();
-      commandPrompt[2].isVisible = false;
-      commandPrompt[2].innerHTML = "Enter a number for radius: ";
-      commandPrompt[2].top = 161;
-      commandPrompt[2].left = 640;
+      // commandPrompt = [];
+      // commandPrompt[0] = new CommandPrompt();
+      // commandPrompt[0].innerHTML = "";
+      // commandPrompt[0].top = 95;
+      // commandPrompt[0].left = 700;
+      // commandPrompt[0].isVisible = false;
+      // commandPrompt[1] = new CommandPrompt();
+      // commandPrompt[1].isVisible = false;
+      // commandPrompt[2] = new CommandPrompt();
+      // commandPrompt[2].isVisible = false;
+      // commandPrompt[2].innerHTML = "Nhập một số cho bán kính: ";
+      // commandPrompt[2].top = 161;
+      // commandPrompt[2].left = 640;
 
-      commandPrompt[3] = new CommandPrompt();
-      commandPrompt[3].isVisible = false;
+      // commandPrompt[3] = new CommandPrompt();
+      // commandPrompt[3].isVisible = false;
 
-      commandPrompt[4] = new CommandPrompt();
-      commandPrompt[4].isVisible = true;
-      commandPrompt[4].innerHTML = "What is " + number1 + " + " + number2 + "? ";
-      commandPrompt[4].top = 200;
-      commandPrompt[4].left = 640;
+      // commandPrompt[4] = new CommandPrompt();
+      // commandPrompt[4].isVisible = true;
+      // commandPrompt[4].innerHTML = "What is " + number1 + " + " + number2 + "? ";
+      // commandPrompt[4].top = 200;
+      // commandPrompt[4].left = 640;
 
-      commandPrompt[5] = new CommandPrompt();
-      commandPrompt[5].isVisible = true;
-      commandPrompt[5].innerHTML = commandPrompt[4].innerHTML + answer;
-      commandPrompt[5].top = 232;
-      commandPrompt[5].left = 550;
+      // commandPrompt[5] = new CommandPrompt();
+      // commandPrompt[5].isVisible = true;
+      // commandPrompt[5].innerHTML = commandPrompt[4].innerHTML + answer;
+      // commandPrompt[5].top = 232;
+      // commandPrompt[5].left = 550;
 
-      commandPrompt[6] = new CommandPrompt();
-      commandPrompt[6].isVisible = true;
-      commandPrompt[6].innerHTML = commandPrompt[5].innerHTML + "\n" + number1 + " + " + number2 + " = " + answer + " is " + result;
-      commandPrompt[6].top = 232;
-      commandPrompt[6].left = 550;
+      // commandPrompt[6] = new CommandPrompt();
+      // commandPrompt[6].isVisible = true;
+      // commandPrompt[6].innerHTML = commandPrompt[5].innerHTML + "\n" + number1 + " + " + number2 + " = " + answer + " is " + result;
+      // commandPrompt[6].top = 232;
+      // commandPrompt[6].left = 550;
 
-      commandPrompt[7] = new CommandPrompt();
-      commandPrompt[7].isVisible = false;
-      commandPrompt[7].innerHTML = commandPrompt[6].innerHTML + "";
-      commandPrompt[7].top = 329;
-      commandPrompt[7].left = 300;
+      // commandPrompt[7] = new CommandPrompt();
+      // commandPrompt[7].isVisible = false;
+      // commandPrompt[7].innerHTML = commandPrompt[6].innerHTML + "";
+      // commandPrompt[7].top = 329;
+      // commandPrompt[7].left = 300;
+
 
       currentLine = 0;
 
-      function init() {
+      function init() { // xét tọa độ cho nó 
         posLoc = getElementPos(document.getElementById('program'));
         x = posLoc.x;
         y = posLoc.y;
@@ -324,7 +325,7 @@
         $("#t2").css("top", y + 230).css("left", x + 280);
         $("#t3").css("top", y + 230).css("left", x + 470);
 
-        offset = n * 20;
+        offset = n * 20; // ở đây tao sử dụng css3 
         for (var i = 1; i <= n; i++) {
           $("#d" + i).show();
           $("#d" + i).css("top", y + 220 - (n + 1 - i) * 20)
@@ -339,8 +340,8 @@
       }
     </script>
   
-<!-- Global Site Tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-89940905-27"></script>
+
+
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments)};
@@ -348,17 +349,16 @@
   gtag('config', 'UA-89940905-27');
 </script>
 
-<script type="text/javascript" src="../logging.js"></script>
 </head>
 
 
 
   <body  onload="init()" onresize="draw()" style="font-family: times new roman;">   
-    <h3 style="text-align:center; font: bold">Tower of Hanoi <a href="https://yongdanielliang.github.io/animation/animation.html" >Animation</a> by 
-      <a href="https://yongdanielliang.github.io/" >DATV</a></h3>
+    <h3 style="text-align:center; font: bold">Tower of Hanoi <a href="https://github.com/vudast412/DATV-Algroithm" >Animation</a> by 
+      <a href="https://www.facebook.com/BoxDATV/" >DATV</a></h3>
     <p style = "alignment-adjust: central; text-align: center; max-wdith: 800px; margin-left: auto; margin-right: auto">
       Cách sử dụng: Nhấp vào nút Bắt đầu để di chuyển tất cả các đĩa từ Tháp A sang Tháp B. Nhấp vào nút Đặt lại để đặt lại về trạng thái ban đầu.
-    </p>
+    </p> <!-- thẻ body : edit 1 table -->
 
     <div id = "program" style="width: 610px; height: 250px; font-family: courier; font-size: 100.5%; margin: 0px auto; border: 1px solid #EB0D1B; text-align: left">
 
@@ -377,8 +377,8 @@
       <div id = "d4" class = "disc"></div>
       <div id = "d5" class = "disc"></div>
       <div id = "d6" class = "disc"></div>
-<!--      <div id = "d7" class = "disc"></div>
-      <div id = "d8" class = "disc"></div>-->
+      <div id = "d7" class = "disc"></div>
+      <!-- <div id = "d8" class = "disc"></div> -->
 
 
     </div>
@@ -393,7 +393,7 @@
     </div>
     <div style="text-align: center; margin-top: 1em">
       <span id = "status" style = "background-color: chocolate; color: white; alignment-adjust: central; text-align: center; max-wdith: 800px; margin-left: auto; margin-right: auto">
-        Số lần di chuyển cho 3 đĩa là 7
+        Số lần di chuyển cho đĩa
       </span>
     </div>
 
@@ -411,11 +411,11 @@
       count = [];
       $("#start").click(function() {
         if (isStarted) {
-          jAlert("Click Reset and then Start");
+          jAlert("Ấn vào nút Random để bắt đầu!");
           return;
         }
         else {
-          isStarted = true;
+          isStarted = true;          
         }
 
         n = $("#spinner").val();
@@ -434,7 +434,7 @@
       function animateMoves(queue) {
         d = 0;
         if (!queue.isEmpty()) {
-          tuple = queue.dequeue();
+          tuple = queue.dequeue();          
 //          jAlert(tuple.n + ", " + tuple.fromTower + ", " + tuple.toTower);
 
           left1 = x + (40 + 150) * tuple.toTower + 40 + (8 - tuple.n) * 7;
@@ -459,13 +459,14 @@
       isStarted = false;
       $("#reset").click(function() {
         isStarted = false;
-        n = 3;
-        $("#spinner").val(3);
+        n = 0; // khi bấm reset random sẽ quay lại là 0 tùy theo bạn thích
+        $("#spinner").val(0); // cũng là 0 tùy the bạn thích
         queue = new Queue();
-        for (var i = 1; i <= 6; i++) {
+        for (var i = 1; i <= 7; i++) {
           $("#d" + i).stop();
         }
         init();
+        // alert("Bạn có muốn đặt lại");
       });
 
       $("#spinner").click(function() {
@@ -486,7 +487,7 @@
       function handleSpinnerValue(txtValue)
       {
         if (isStarted) {
-          jAlert("Please click Reset before setting the disc numbers");
+          jAlert("Vui lòng nhấn nút random trước khi bắt đầu!");
         }
         else {
           n = txtValue;
@@ -500,7 +501,7 @@
         $("#d" + n).animate({top: y + 40}, slowAnimationSpeed);
         $("#d" + n).animate({left: left1}, slowAnimationSpeed);
         $("#d" + n).animate({top: top1, left: left1}, slowAnimationSpeed);
-//          $("#flyingReturnValue").animate({top: value1Top + 40, left: value1Left}, slowAnimationSpeed);
+//         
         count[fromTower]--;
         count[toTower]++;
       }
@@ -537,7 +538,7 @@
       }
 
       function startOver() {
-        init();
+        init(); // đoạn này đang test nên chưa ok lắm
 //          document.getElementById('nextButton').style.display = 'none';
 //          document.getElementById('startOverButton').style.display = 'none';
 //          document.getElementById('prevButton').style.display = 'none';
@@ -558,7 +559,8 @@
       }
 
       function step() {
-        pos = getElementPos(document.getElementById('line' + currentLine));
+        pos = getElementPos(document.getElementById('line' + currentLine)); 
+        // lên xuôgns
 //          $("#explanation").animate({top: explanation[currentLine].top, left: explanation[currentLine].left,
 //              width: explanation[currentLine].width}, animationSpeed);
 //          $("#commandPrompt").animate({top: commandPrompt[currentLine].top, left: commandPrompt[currentLine].left}, animationSpeed);
@@ -708,8 +710,9 @@
         }
         else {
           document.getElementById('commandPrompt').style.visibility = 'hidden';
+          
         }
-
+ // js ở đây hỗ trợ cho việc animation // còn màu sắc thiết kế do css nó ngắn gọn 
 //          if (currentLine == 0) {
 //              pos = getElementPos(document.getElementById('line0'));
 //          }
@@ -752,7 +755,7 @@
           document.getElementById('flyingRadius').innerHTML = '';
           document.getElementById('flyingArea').innerHTML = '';
           document.getElementById('flyingAnswer').innerHTML = '';
-          currentLine = 0;
+          currentLine = 0;    
           document.getElementById('startOverButton').style.visibility = 'hidden';
           document.getElementById('startOverButton').style.display = 'none';
         }

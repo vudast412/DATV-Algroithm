@@ -1,4 +1,3 @@
-/* Prevent font scaling in iPhone */
 html {
     -webkit-text-size-adjust: 100%; 
 }
@@ -14,12 +13,12 @@ body {font-family: "Courier New", sans-serif; font-size: 100%; color: black}
 /*      .comment {color: darkred !important; background: #d1e0f0;}*/
 .literal {color: #007d9f !important;}
 .constant {color: #007d9f !important;}
+/*.keyword {màu: xanh! quan trọng;}
+.comment {màu: tối! quan trọng; }
+       .comment {màu: tối! quan trọng; nền: # d1e0f0;}
+.literal {color: darkblue! quan trọng;}
+.constant {màu: teal! quan trọng;} */
 
-/*.keyword {color: green !important;}
-.comment {color: darkred !important; }
-      .comment {color: darkred !important; background: #d1e0f0;}
-.literal {color: darkblue !important;}
-.constant {color: teal !important;}*/
 .code {font-family: Consolas, Menlo, Monaco, 
    Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, 
                            Courier New, monospace, serif, monospace; color: black;}

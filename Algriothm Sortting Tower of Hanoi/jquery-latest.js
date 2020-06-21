@@ -1,4 +1,4 @@
-/*! jQuery v1.7.2 jquery.com | jquery.org/license */
+/// căn lề khung table cho html 
 (function(a, b) {
     function cy(a) {
         return f.isWindow(a) ? a : a.nodeType === 9 ? a.defaultView || a.parentWindow : !1

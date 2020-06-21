@@ -1,18 +1,18 @@
-// Constructor for LinkedList
+// Trình xây dựng cho ! danh sách
 function LinkedList() {
     this.size = 0;
     this.head = null;
     this.tail = null;
   }
         
-  // Constructor for Node
+  // Trình xây dựng cho nút
   function Node(e) {
     this.element = e;
     this.next = null;
   }
         
   LinkedList.prototype.add = function(e) {
-    // Create a new node for element e
+    // Tạo một nút mới cho phần tử e
     var node = new Node(e);
           
     if (this.tail == null) {
@@ -26,9 +26,9 @@ function LinkedList() {
     this.size++;
   }
         
-  // Insert the element to the beginning of the list
+  // Chèn phần tử vào đầu danh sách
   LinkedList.prototype.addFirst = function(e) {
-    var node = new Node(e); // Create a new node 
+    var node = new Node(e); // Tạo một nút mới
     node.next = this.head;
     this.head = node;
     this.size++;
@@ -38,7 +38,7 @@ function LinkedList() {
     }
   }
   
-  // Insert the element at the specified index
+  // Chèn phần tử vào chỉ mục đã chỉ định
   LinkedList.prototype.insert = function(index, e) {
     if (index == 0) this.addFirst(e);
     else if (index >= this.size) this.add(e);
@@ -48,13 +48,13 @@ function LinkedList() {
         current = current.next;
       }
       temp = current.next;
-      current.next = new Node(e); // Create a new node 
+      current.next = new Node(e); // Tạo một nút mới
       (current.next).next = temp;
       this.size++;
     }
   }
         
-  // Remove the first element in the list
+  // Xóa phần tử đầu tiên trong danh sách
   LinkedList.prototype.removeFirst = function() {
     if (this.size == 0) return null;
     else {
@@ -66,7 +66,7 @@ function LinkedList() {
     }
   }
         
-  // Remove the last element in the list
+  // Xóa phần tử cuối cùng trong danh sách
   LinkedList.prototype.removeLast = function() {
     if (this.size == 0) return null;
     else if (this.size == 1) {
@@ -88,7 +88,7 @@ function LinkedList() {
     }
   }
     
-  // Remove the specified element 
+  // Xóa phần tử đã chỉ định
   LinkedList.prototype.remove = function(e) {
     var index = this.indexOf(e);
     if (index < 0) {
@@ -100,10 +100,10 @@ function LinkedList() {
     }
   }
   
-  // Remove the element at the specified index
+  // Xóa phần tử tại chỉ mục đã chỉ định
   LinkedList.prototype.removeAt = function(index) {
     if (index < 0 || index >= this.size) {
-      return null; // Out of range
+      return null; // ngoài phạm vi sẽ out
     } 
     else if (index == 0) return this.removeFirst();
     else if (index == this.size - 1) return this.removeLast();
@@ -124,7 +124,7 @@ function LinkedList() {
   }
               
   LinkedList.prototype.toString = function() {
-    // Create a new node for element e
+    // Tạo một nút mới cho phần tử e
     var s = "[";
     var current = this.head;
     while (current !== null) {
@@ -170,9 +170,9 @@ function LinkedList() {
   }
         
   LinkedList.prototype.lastIndexOf = function(e) {
-    return null; // To be implemented
+    return null; // Để được thực hiện
   }
   
   LinkedList.prototype.contains = function(e) {
-    return this.indexOf(e) >= 0; // To be implemented
+    return this.indexOf(e) >= 0; // Để được thực hiện
   }

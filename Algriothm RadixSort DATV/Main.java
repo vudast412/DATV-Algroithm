@@ -20,8 +20,8 @@ public class Main {
     }
 
     public static void resetArray(){
-		// If we are currently in a sorting method, then isSorting should be true
-		// We do not want to reinitialize/reset the array mid sort.
+		// Nếu chúng hiện đang trong một phương thức sắp xếp, thì isSorting phải là true
+		// Chúng ta không muốn sắp xếp lại / đặt lại mảng mid sort.
 		if (isSorting) return;
 		toBeSorted = new Integer[sortDataCount];
 		blockWidth = 15; //(int) Math.max(Math.floor(500/sortDataCount), 10);
@@ -32,7 +32,7 @@ public class Main {
 				toBeSorted[i] = (int) (sortDataCount*Math.random());
 			} 
 		}
-		// If we're using incremental values, they are already sorted. This shuffles it.
+		// Nếu chúng ta đang sử dụng các giá trị gia tăng, chúng đã được sắp xếp. Điều này xáo trộn nó.
 		if (stepped) {
 			ArrayList<Integer> shuffleThis = new ArrayList<>();
 			for (int i = 0; i < toBeSorted.length; i++) {

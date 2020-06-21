@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <style>
+        body {
+            background: #d7c6f6;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        #myTable {
+            background-color: aliceblue;
+            border: 3px solid #6634c1;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        #myResult {
+            background-color: #fcfffc;
+            margin-top: 20px;
+            border: 3px solid #11a9b1;
+            padding: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .col {
+            border: 1px solid #000;
+            padding: 5px;
+            min-width: 37px;
+            text-align: center;
+        }
+
+        .container {
+            margin: auto;
+            width: 800px;
+            position: relative;
+            top: 50px;
+        }
+
+        input {
+            text-align: center;
+        }
+
+        .bucket {
+            width: 97%; /* max-content  để thành cột */ 
+            background-color: antiquewhite;
+            border: 2px solid #ff9d0b;
+            margin: 15px 0px; /* 15px 5px  khoảng cách cột */
+            padding: 7px; /* padding 10px giản khoảng cách to nhỏ*/ 
+            border-radius: 5px;
+            /* float: left; để dịch cột sang trái */
+            min-height: 80px;
+        }
+
+        .bucket td {
+            border: 1px solid #000;
+            padding: 5px;
+            min-width: 37px;
+            text-align: center;
+            background: azure;
+            /* display: block; để số xuống dòng thành cột */
+            /* margin: 5px; lề margin số */
+        }
+
+        .bucket label {
+            padding: 5px;
+            /*font-sze: 5px; để kích thước phông chữ */
+        }
+
+        .bucket table {
+            margin: 5px 0px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <label>Chọn số ngẫu nhiên: </label>
+        <input type="number" id="amount" style="padding:3px 6px;border-radius: 3px;width:50px;margin-right:20px;" />
+        <label>Max không giới hạn:</label>
+        <input type="number" id="maxNumber" value="9999" style="padding:3px 6px;border-radius: 3px;width:80px;" />
+        <button id="btnExecute">Execute</button>
+        <table id="myTable" class="hidden"></table>
+        <table id="myResult" class="hidden"></table>
+        <div id="bucket">
+        </div>
+    </div>
+</body>
+
+</html>
+<script <!-- Radix sort -->
+
+    var step = 0;
+    function radixSort() {
+        if (amount.value == "" || max.value == "") {
+            return;
+        }
+        if (step >= maxStep) {
+            alert("Thuật toán của bạn đã hoàn thành, ngồi xuống và làm cốc chè với mình nào!");
+            return;
+        }
+        let numBucket = document.querySelectorAll('.bucket').length;
+        document.getElementById("bucket").innerHTML = "";
+        initBucket();
+
+        result.forEach((e, index) => {
+            let nu = parseInt((e / (10 ** step)) % 10);
+            let bu_tr = document.querySelectorAll("#bucket_" + nu + " tr");
+            let bu_td = document.querySelectorAll("#bucket_" + nu + " tr td");
+            let html = "";
+            if (bu_td.length % 15 == 0) {
+                html = "<tr>";
+            } else {
+                if (bu_tr.length > 0) {
+                    let td = document.createElement('td');
+                    td.innerHTML = e;
+                    let bu_tr_td = bu_tr[bu_tr.length - 1].appendChild(td);
+                    return;
+                }
+            }
+            html += '<td>' + e + '</td></tr>';
+            document.querySelector("#bucket_" + nu + " tbody").innerHTML += html;
+        });
+        updateResult();
+        step++;
+    }
+    function updateResult() {
+        let td = document.querySelectorAll(".bucket tr td");
+        let result_temp = [];
+        if (td.length == 0) {
+            myResult.className = "hidden";
+            return;
+        }
+        myResult.className = "";
+        myResult.innerHTML = "";
+        let html = "<tr>";
+        td.forEach((e, index) => {
+            let nu = parseInt(e.innerHTML);
+            result_temp.push(nu);
+            if (index % numberEachRow == 0) {
+                html += "</tr><tr>";
+            }
+            html += '<td class="col">' + nu + '</td>';
+        });
+        html += "</tr>";
+        myResult.innerHTML = html;
+        result = result_temp;
+    }
+    //Initial
+    var result = [];
+    var minNumber = 0;
+    var maxNumber = 9999;
+    var numberEachRow = 15;
+    var maxStep = 1;
+    var max = document.getElementById("maxNumber");
+    var amount = document.getElementById("amount");
+    var myTable = document.getElementById("myTable");
+    var myResult = document.getElementById("myResult");
+    var bucket = document.getElementById("bucket");
+    var btnExecute = document.getElementById("btnExecute");
+    amount.addEventListener("change", onChange);
+    max.addEventListener("change", onChangeMax);
+    btnExecute.addEventListener("click", radixSort)
+    amount.focus();
+    function initBucket() {
+        var numBucket = 10;
+        let html = "";
+        for (var i = 0; i < numBucket; i++) {
+            html += '<div class="bucket">'
+                + '<label>Bucket ' + i + '</label>'
+                + '<table id="bucket_' + i + '"><tbody></tbody></table>'
+                + '</div>';
+        }
+        bucket.innerHTML = html;
+    }
+    function onChange(e) {
+        if (this.value == "") {
+            myTable.className = "hidden";
+            e.preventDefault();
+        } else {
+            step = 0;
+            maxStep = 1;
+            result = [];
+            myResult.innerHTML = "";
+            myResult.className = "hidden";
+            bucket.innerHTML = "";
+            var val = parseInt(this.value);
+            if (val <= 0) {
+                return;
+            }
+            if (val > 105) {
+                val = 105;
+                this.value = 105;
+            }
+            myTable.className = "";
+            myTable.innerHTML = "";
+            var row = document.createElement("tr");
+            let max = 0;
+            for (var i = 0; i < val; i++) {
+                if (i % numberEachRow == 0) {
+                    myTable.append(row);
+                    row = document.createElement("tr");
+                }
+                const td = document.createElement("td");
+                td.className = "col";
+                let nu_rd = parseInt((Math.random() * maxNumber + minNumber));
+                if (nu_rd > max) {
+                    max = nu_rd;
+                }
+                td.innerHTML = nu_rd;
+                result.push(nu_rd);
+                row.append(td);
+            }
+            myTable.append(row);
+            maxStep = ("" + max).length;
+        }
+    }
+
+    function onChangeMax(e) {
+        if (this.value == "") {
+            e.preventDefault();
+        } else {
+            maxNumber = parseInt(this.value);
+            if (maxNumber <= 0) {
+                maxNumber = 9999;
+            } else if (maxNumber > 999999999) {
+                maxNumber = 999999999;
+            }
+            this.value = maxNumber;
+            amount.dispatchEvent(new Event('change'));
+        }
+    }
+</script>

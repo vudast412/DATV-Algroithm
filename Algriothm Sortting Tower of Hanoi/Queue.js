@@ -1,14 +1,14 @@
-// Constructor for Queue
+// Xây dựng cho hàng đợi
 function Queue() {
     this.list = new LinkedList();
   }
              
-  // Enqueue an element to the queue
+  // Enqueue một yếu tố để xếp hàng
   Queue.prototype.enqueue = function(e) {
     this.list.add(e);
   }
         
-  // Remove an element from the head of the queue
+  // Xóa một phần tử khỏi phần đầu của hàng đợi
   Queue.prototype.dequeue = function() {
     return this.list.removeFirst();
   }

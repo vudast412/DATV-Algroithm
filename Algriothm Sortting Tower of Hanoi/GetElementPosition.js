@@ -1,7 +1,5 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ DATV   ở dầy dùng get element để thuần javascrip :v 
  */
 $(function () {
     $("#gettersetter").draggable();
@@ -107,13 +105,13 @@ function CommandPrompt() {
 }
 
 function display(currentLine) {
-//    commandPrompt[currentLine].innerHTML = currentPromptContent;
-    $("#highlight").animate({top: pos.y, left: pos.x, width: pos.w, height: pos.h}, animationSpeed);
+    //    commandPrompt[currentLine].innerHTML = currentPromptContent;
+    $("#highlight").animate({ top: pos.y, left: pos.x, width: pos.w, height: pos.h }, animationSpeed);
     document.getElementById('explanation').innerHTML = explanation[currentLine].innerHTML;
 
     if (commandPrompt[currentLine].isVisible) {
         document.getElementById('commandPrompt').style.visibility = 'visible';
-//        $("#commandPrompt").animate({top: commandPrompt[currentLine].top, left: commandPrompt[currentLine].left}, animationSpeed);
+        //        $("#commandPrompt").animate({top: commandPrompt[currentLine].top, left: commandPrompt[currentLine].left}, animationSpeed);
         document.getElementById('commandPromptContent').innerHTML = commandPrompt[currentLine].innerHTML;
     }
     else {
